@@ -1,7 +1,7 @@
 import getData from './getData.js';
+import userData from './userData.js';
 
 const NEW_COUMT_ITEM = 6;
-const wishList = ['idd005', 'idd066', 'idd077', 'idd088', 'idd099'];
 
 const generateGoodsPage = () => {
 
@@ -39,6 +39,13 @@ const generateGoodsPage = () => {
                 </li>
             `);
         });
+        goodsList.addEventListener('click', (event) => {
+            const btnAddCart = event.target.closest('.btn-add-card');
+            if (btnAddCart) {
+                event.preventDefault();
+                userData.cartList = btnAddCart.dataset.idd;
+            }
+        });    
     };
 
     if (location.pathname.includes('goods') && location.search) {
@@ -49,7 +56,7 @@ const generateGoodsPage = () => {
             getData.search(value, generateCards);
             mainHeader.textContent = `Поиск: ${value}`;
         } else if (prop === 'wishlist') {
-            getData.wishList(wishList, generateCards);
+            getData.wishList(userData.wishList, generateCards);
             mainHeader.textContent = `Список желаний`;            
         } else {
             getData.category(prop, value, generateCards);
