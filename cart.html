@@ -27,12 +27,12 @@
 			<span class="cart-total-price"></span>
 		</div>
 
-		<form id="form" class="cart-form">
+		<form action="./mail.php" id="form" class="cart-form" method="POST">
 			<label>
-				<input type="text" name="name" placeholder="Ваше имя">
+				<input type="text" name="user_name" placeholder="Ваше имя">
 			</label>
 			<label>
-				<input type="email" name="email" placeholder="Ваш email">
+				<input type="email" name="user_email" placeholder="Ваш email">
 			</label>
 			<button type="submit" class="cart-checkout">Оформить</button>
 		</form>
