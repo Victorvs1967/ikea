@@ -14,6 +14,7 @@ const userData = {
         }
         setLocalStorage('wishlist', this.wishList);
     },
+
     cartListData: getLocalStorage('cartlist'),
     get cartList() {
         return this.cartListData;

@@ -6,6 +6,7 @@ $mail->CharSet = 'utf-8';
 
 $name = $_POST['user_name'];
 $email = $_POST['user_email'];
+$goods = $_POST['goods'];
 
 $mail->isSMTP();                                        // Set mailer to use SMTP
 $mail->Host = 'smtp.gmail.com';  				        // Specify main and backup SMTP servers
@@ -20,7 +21,7 @@ $mail->addAddress('victorsmirnov67@gmail.com');         // Кому будет �
 $mail->isHTML(true);                                    // Set email format to HTML
 
 $mail->Subject = 'Заявка с сайта';
-$mail->Body    = '' .$name . ' оставил заявку.<br>Почта этого пользователя: ' .$email;
+$mail->Body    = '' .$name . ' оставил заявку.<br>Почта этого пользователя: ' .$email.'<br>Состав заявки:<br>' .$goods;
 $mail->AltBody = '';
 
 if(!$mail->send()) {

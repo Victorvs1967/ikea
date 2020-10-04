@@ -7,6 +7,7 @@ const generateCartPage = () => {
     if (location.pathname.includes('cart')) {
         const cartList = document.querySelector('.cart-list');
         const cartTotalPrice = document.querySelector('.cart-total-price');
+        const goods = document.querySelector('#goods');
 
         const renderCartList = (data) => {
             let totalPrice = 0;
@@ -60,12 +61,19 @@ const generateCartPage = () => {
                 `);
             });
             cartTotalPrice.textContent = `${totalPrice}-`;
+
+            getData.cart(userData.cartList, (data) => {
+                let goodsContent = '';
+                data.forEach(({id, subcategory, name: itemName, count}) => {
+                    goodsContent += `${subcategory} - ${itemName} (${id}): ${count} шт.;<br>`;
+                });    
+                goods.textContent = goodsContent;
+            });
         };
         getData.cart(userData.cartList, renderCartList);
 
         cartList.addEventListener('change', (event) => {
             const target = event.target;
-            console.log(target.value);
             userData.changeCountcartList = {
                 id: target.dataset.idd,
                 count: target.value
